@@ -20,7 +20,6 @@ class SecondScreenActivity : AppCompatActivity() {
         val title: String = intent.extras!!.getString("title").toString()
         val plot: String = intent.extras!!.getString("plot").toString()
         val genes: String = intent.extras!!.getString("genes").toString()
-        val maincast: String = intent.extras!!.getString("maincast").toString()
         val episodes: String = intent.extras!!.getString("episodes").toString()
         val rating: String = intent.extras!!.getString("rating").toString()
         println("Vikash anim : $animeUrl")
