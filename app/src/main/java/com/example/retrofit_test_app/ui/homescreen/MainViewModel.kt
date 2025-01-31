@@ -1,6 +1,7 @@
-package com.example.retrofit_test_app
+package com.example.retrofit_test_app.ui.homescreen
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,23 +11,17 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
 
-    val myResponse: MutableLiveData<List<Data>> = MutableLiveData()
+    private val _myResponse = MutableLiveData<List<Data>>()
+    val myResponse: LiveData<List<Data>> get() = _myResponse
 
     fun getPost() {
         viewModelScope.launch {
-            val response = repository.getPost()
-            val animeList = response.data
+            repository.getPost().onSuccess { response ->
+                _myResponse.value = response.data
+            }.onFailure { exception ->
 
-            myResponse.value = animeList
-
-            animeList.forEach { anime ->
-//                myResponse.value = listOf(anime)
-                Log.d("title", "${anime.title}")
-
+                Log.e("MainViewModel", "Error fetching posts: ${exception.message}")
             }
-
-
         }
-
     }
 }

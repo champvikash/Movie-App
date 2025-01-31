@@ -1,4 +1,4 @@
-package com.example.retrofit_test_app
+package com.example.retrofit_test_app.ui.homescreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
